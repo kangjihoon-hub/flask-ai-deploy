@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감성 분석 프로그램</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: none;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f1f3f5;
+            border-radius: 6px;
+        }
+
+        .positive {
+            color: green;
+            font-weight: bold;
+        }
+
+        .negative {
+            color: red;
+            font-weight: bold;
+        }
+
+        .neutral {
+            color: gray;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>감성 분석 프로그램</h1>
+
+        <p>영어 리뷰를 입력하면 긍정 또는 부정 감성을 분석합니다.</p>
+
+        <form method="POST" action="/">
+            <textarea
+                name="review"
+                placeholder="Enter your review here..."
+                required>{{ text }}</textarea>
+
+            <button type="submit">감성 분석하기</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h3>분석 결과</h3>
+
+            {% if result == "POSITIVE" %}
+                <p class="positive">😊 {{ result }}</p>
+
+            {% elif result == "NEGATIVE" %}
+                <p class="negative">😞 {{ result }}</p>
+
+            {% else %}
+                <p class="neutral">😐 {{ result }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
